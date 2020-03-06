@@ -15,6 +15,8 @@ namespace VerifyIntegrations.Validations
 		private static readonly ILog log = LogManager.GetLogger(typeof(FileValidation));
 		public void FileValidationMenu()
 		{
+			log.Info("File Validation execution start");
+
 			string op = "";
 
 			Console.Clear();
@@ -159,7 +161,7 @@ namespace VerifyIntegrations.Validations
 				
 				while(!op.Equals("1") && !op.Equals("2"))
 				{
-					Console.WriteLine("\n Mover arquivos Inválidos para {0}?\n 1- Sim  2- Não", ConfigurationManager.AppSettings["InvalidFolder"].ToString());
+					Console.WriteLine("\n Mover arquivos Inválidos para a pasta de Inválidos?\n 1- Sim  2- Não");
 					Console.Write(" Opção: ");
 					op = Console.ReadLine();
 

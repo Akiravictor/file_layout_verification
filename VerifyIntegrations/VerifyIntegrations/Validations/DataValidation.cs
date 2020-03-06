@@ -13,10 +13,12 @@ namespace VerifyIntegrations.Validations
 {
 	public class DataValidation
 	{
-		private static readonly ILog log = LogManager.GetLogger(typeof(FileValidation));
+		private static readonly ILog log = LogManager.GetLogger(typeof(DataValidation));
 
 		public void DataValidationMenu()
 		{
+			log.Info("Execution Start");
+
 			string op = "";
 
 			Console.Clear();
@@ -100,7 +102,7 @@ namespace VerifyIntegrations.Validations
 				}
 				else
 				{
-					string[] file = files[int.Parse(op)].Split('_');
+					string[] file = Path.GetFileNameWithoutExtension(files[int.Parse(op)]).Split('_');
 
 
 					layout = Tools.LoadSingleLayout(file[1], file[3]);
@@ -123,7 +125,7 @@ namespace VerifyIntegrations.Validations
 
 		private void ManualValidateFile()
 		{
-			string op = "";
+			string op;
 			Dictionary<int, string> files;
 			Root layout;
 
@@ -157,7 +159,7 @@ namespace VerifyIntegrations.Validations
 				}
 				else
 				{
-					string[] file = files[int.Parse(op)].Split('_');
+					string[] file = Path.GetFileNameWithoutExtension(files[int.Parse(op)]).Split('_');
 
 					layout = Tools.LoadSingleLayout(file[0], file[1]);
 
@@ -254,6 +256,36 @@ namespace VerifyIntegrations.Validations
 				Console.WriteLine(" Erros encontrados: {0}", errors);
 				Console.WriteLine(" Avisos encontrados: {0}", LineWarnings.Count);
 
+				if (LineErrors.Count > 0 && LineWarnings.Count == 0)
+				{
+					Thread thread = new Thread(
+						new ThreadStart(() =>
+							Tools.GenerateErrorLog(LineErrors.ToDictionary(x => x.Key, x => x.Value), null, Path.GetFileNameWithoutExtension(file))
+							)
+						);
+					thread.Start();
+				}
+				else if (LineErrors.Count == 0 && LineWarnings.Count > 0)
+				{
+					Thread thread = new Thread(
+						new ThreadStart(() =>
+							Tools.GenerateErrorLog(null, LineWarnings.ToDictionary(x => x.Key, x => x.Value), Path.GetFileNameWithoutExtension(file))
+							)
+						);
+					thread.Start();
+				}
+				else if (LineErrors.Count > 0 && LineWarnings.Count > 0)
+				{
+					Thread thread = new Thread(
+						new ThreadStart(() =>
+							Tools.GenerateErrorLog(LineErrors.ToDictionary(x => x.Key, x => x.Value), LineWarnings.ToDictionary(x => x.Key, x => x.Value), Path.GetFileNameWithoutExtension(file))
+							)
+						);
+					thread.Start();
+				}
+
+				Thread.Sleep(1000);
+
 				if (LineWarnings.Count > 0)
 				{
 					Console.WriteLine("\n Lista de Avisos:");
@@ -267,7 +299,7 @@ namespace VerifyIntegrations.Validations
 
 						var print = LineWarnings.Take(int.Parse(ConfigurationManager.AppSettings["ItemsPerPage"].ToString())).ToDictionary(l => l.Key, l => l.Value);
 
-						foreach (var warning in LineWarnings)
+						foreach (var warning in print)
 						{
 							Console.WriteLine(" Linha: {0}\n    {1}", warning.Key, warning.Value);
 							lines++;
@@ -310,6 +342,29 @@ namespace VerifyIntegrations.Validations
 
 						Console.Clear();
 					}				
+				}
+
+				if (LineErrors.Count == 0 && LineWarnings.Count == 0)
+				{
+					Console.WriteLine(" Deseja mover o arquivo {0} para a pasta de arquivos válidos?\n 1- Sim  2- Não", Path.GetFileName(file));
+					Console.Write(" Opção: ");
+					op = Console.ReadLine();
+
+					if (op.Equals("1"))
+					{
+						Tools.MoveToValid(file);
+					}
+				}
+				else
+				{
+					Console.WriteLine(" Deseja mover o arquivo {0} para a pasta de arquivos inválidos?\n 1- Sim  2- Não", Path.GetFileName(file));
+					Console.Write(" Opção: ");
+					op = Console.ReadLine();
+
+					if (op.Equals("1"))
+					{
+						Tools.MoveToInvalid(file);
+					}
 				}
 			}
 

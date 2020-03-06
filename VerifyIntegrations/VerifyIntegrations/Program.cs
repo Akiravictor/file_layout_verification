@@ -21,11 +21,6 @@ namespace VerifyIntegrations
 
 			log.Info("Execution Start");
 
-			//using (StreamReader rs = new StreamReader(@"D:\Documentos\Projetos\VerifyIntegrations\VerifyIntegrations\Layout Files\EXEMPLO.json"))
-			//{
-			//	var a = JsonConvert.DeserializeObject<Root>(rs.ReadToEnd().ToString());
-			//}
-
 			while (true)
 			{
 				Console.WriteLine(" ==============================");

@@ -10,6 +10,7 @@ namespace VerifyIntegrations.Utils
 {
 	public static class Tools
 	{
+		private static readonly ILog log = LogManager.GetLogger(typeof(Tools));
 		public static Dictionary<int, string> ListFiles(string path)
 		{
 			Dictionary<int, string> FileList = new Dictionary<int, string>();
@@ -133,10 +134,51 @@ namespace VerifyIntegrations.Utils
 			}
 		}
 
+		public static void MoveToValid(string file)
+		{
+			if (Directory.Exists(ConfigurationManager.AppSettings["ValidFolder"].ToString()))
+			{
+				Console.WriteLine(" Movendo {0} para pasta de Válidos...\n", Path.GetFileName(file));
+				File.Move(file, string.Format("{0}\\{1}", ConfigurationManager.AppSettings["ValidFolder"].ToString(), Path.GetFileName(file)));
+			}
+			else
+			{
+				Console.WriteLine(" O diretório de arquivos Válidos ({0}) não foi encontrado...", ConfigurationManager.AppSettings["ValidFolder"].ToString());
+			}
+		}
+
 		public static void Pause()
 		{
 			Console.WriteLine("\n\n Pressione qualquer tecla para continuar...");
 			Console.ReadLine();
+		}
+
+		public static void GenerateErrorLog(Dictionary<int, string> Errors, Dictionary<int, string> Warnings, string file)
+		{
+			if (Directory.Exists(ConfigurationManager.AppSettings["LogFolder"].ToString()))
+			{
+				string path = Path.Combine(ConfigurationManager.AppSettings["LogFolder"].ToString(), string.Format("{0}_{1}.txt", file, DateTime.Now.ToString("yyyyMMdd_HHmm")));
+
+				using (StreamWriter sw = File.CreateText(path))
+				{
+					if (Warnings != null)
+					{
+						sw.WriteLine("Avisos:\n");
+						foreach (var warning in Warnings)
+						{
+							sw.WriteLine(" Linha: {0}\n    {1}", warning.Key, warning.Value);
+						}
+					}
+					if (Errors != null)
+					{
+						sw.WriteLine("Erros:\n");
+						foreach (var error in Errors)
+						{
+							sw.WriteLine(" Linha: {0}\n    {1}", error.Key, error.Value);
+						}
+					}
+				}
+			}
 		}
 	}
 }
