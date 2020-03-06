@@ -1,0 +1,9 @@
+{
+  "Layout": {
+	"Domain": "FINANCIAL",
+	"Name": "INVOICE",
+	"Number": "1200",
+	"Version": "000",
+	"Fields": []
+  }
+}

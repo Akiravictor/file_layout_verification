@@ -1,0 +1,30 @@
+{
+  "Layout": {
+	"Domain": "EXP",
+	"Name": "EXEMPLO",
+	"Number": "9999",
+	"Version": "000",
+	"Fields": [
+	  {
+		"Name": "FIELD_1",
+		"DataType": "STRING",
+		"isRequired": 1,
+		"LengthValidation": [ 11 ]
+	  },
+	  {
+		"Name": "FIELD_2",
+		"DataType": "DATE",
+		"isRequired": 0,
+		"Conditional": "FIELD_1",
+		"ValidValues": [ "A", "B", "C" ]
+	  },
+	  {
+		"Name": "FIELD_3",
+		"DataType": "DATE",
+		"isRequired": 0,
+		"RegexValidation": "(abc)",
+		"MechanicRequired": [ "spend_and_get", "reduced_price" ]
+	  }
+	]
+  }
+}

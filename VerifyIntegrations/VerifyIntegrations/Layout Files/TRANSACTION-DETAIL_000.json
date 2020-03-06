@@ -1,0 +1,9 @@
+{
+  "Layout": {
+	"Domain": "FINANCIAL",
+	"Name": "TRANSACTION-DETAIL",
+	"Number": "1201",
+	"Version": "000",
+	"Fields": []
+  }
+}
