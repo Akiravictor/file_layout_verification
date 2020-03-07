@@ -44,6 +44,7 @@ namespace VerifyIntegrations
 				}
 				else if (op.Equals("3"))
 				{
+					log.Info("Execution Ending");
 					Environment.Exit(0);
 				}
 				else

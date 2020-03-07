@@ -1,0 +1,95 @@
+2020-03-06 23:21:09,605 [1] INFO VerifyIntegrations.Program - Execution Start
+2020-03-06 23:21:14,003 [1] INFO VerifyIntegrations.Validations.FileValidation - Execution Start
+2020-03-06 23:21:15,788 [1] INFO VerifyIntegrations.Validations.FileValidation - Calling ListFiles
+2020-03-06 23:21:15,789 [1] INFO VerifyIntegrations.Utils.Tools - Checking path existance D:\Projects\file_layout_verification\VerifyIntegrations\VerifyIntegrations\Incoming Files
+2020-03-06 23:21:15,789 [1] INFO VerifyIntegrations.Utils.Tools - Retrieving files from D:\Projects\file_layout_verification\VerifyIntegrations\VerifyIntegrations\Incoming Files
+2020-03-06 23:21:15,851 [1] INFO VerifyIntegrations.Utils.Tools - Returning
+2020-03-06 23:21:18,576 [1] INFO VerifyIntegrations.Validations.FileValidation - Calling VerifyAllFiles
+2020-03-06 23:21:18,641 [1] INFO VerifyIntegrations.Validations.FileValidation - Calling LoadLayouts
+2020-03-06 23:21:18,668 [1] INFO VerifyIntegrations.Utils.Tools - Checking LayoutFolder existance
+2020-03-06 23:21:18,829 [1] INFO VerifyIntegrations.Utils.Tools - Returning
+2020-03-06 23:21:18,830 [1] INFO VerifyIntegrations.Validations.FileValidation - Checking InputFolder existance
+2020-03-06 23:21:18,830 [1] INFO VerifyIntegrations.Validations.FileValidation - Performing validations
+2020-03-06 23:21:21,828 [1] INFO VerifyIntegrations.Validations.FileValidation - Returning
+2020-03-06 23:21:22,962 [1] INFO VerifyIntegrations.Validations.FileValidation - Execution Ending
+2020-03-06 23:21:24,134 [1] INFO VerifyIntegrations.Validations.DataValidation - Execution Start
+2020-03-06 23:21:25,114 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling ListFiles
+2020-03-06 23:21:25,115 [1] INFO VerifyIntegrations.Utils.Tools - Checking path existance D:\Projects\file_layout_verification\VerifyIntegrations\VerifyIntegrations\Incoming Files
+2020-03-06 23:21:25,115 [1] INFO VerifyIntegrations.Utils.Tools - Retrieving files from D:\Projects\file_layout_verification\VerifyIntegrations\VerifyIntegrations\Incoming Files
+2020-03-06 23:21:25,177 [1] INFO VerifyIntegrations.Utils.Tools - Returning
+2020-03-06 23:21:26,922 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling ValidateFile
+2020-03-06 23:21:26,983 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling ListFiles
+2020-03-06 23:21:26,983 [1] INFO VerifyIntegrations.Utils.Tools - Checking path existance D:\Projects\file_layout_verification\VerifyIntegrations\VerifyIntegrations\Incoming Files
+2020-03-06 23:21:26,984 [1] INFO VerifyIntegrations.Utils.Tools - Retrieving files from D:\Projects\file_layout_verification\VerifyIntegrations\VerifyIntegrations\Incoming Files
+2020-03-06 23:21:27,044 [1] INFO VerifyIntegrations.Utils.Tools - Returning
+2020-03-06 23:21:32,448 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling LoadSingleLayout
+2020-03-06 23:21:32,448 [1] INFO VerifyIntegrations.Utils.Tools - Checking LayoutFolder existance
+2020-03-06 23:21:32,449 [1] INFO VerifyIntegrations.Utils.Tools - Returning
+2020-03-06 23:21:32,450 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling DataValidationSubMenu
+2020-03-06 23:21:33,834 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling VerifyRequired
+2020-03-06 23:21:33,836 [1] INFO VerifyIntegrations.Validations.DataValidation - Verifying Required Fields
+2020-03-06 23:21:33,836 [1] INFO VerifyIntegrations.Validations.DataValidation - Verifying file content
+2020-03-06 23:21:33,836 [1] INFO VerifyIntegrations.Validations.DataValidation - Returning
+2020-03-06 23:21:34,838 [1] INFO VerifyIntegrations.Validations.DataValidation - Returning
+2020-03-06 23:21:36,289 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling ValidateFile
+2020-03-06 23:21:36,350 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling ListFiles
+2020-03-06 23:21:36,350 [1] INFO VerifyIntegrations.Utils.Tools - Checking path existance D:\Projects\file_layout_verification\VerifyIntegrations\VerifyIntegrations\Incoming Files
+2020-03-06 23:21:36,350 [1] INFO VerifyIntegrations.Utils.Tools - Retrieving files from D:\Projects\file_layout_verification\VerifyIntegrations\VerifyIntegrations\Incoming Files
+2020-03-06 23:21:36,411 [1] INFO VerifyIntegrations.Utils.Tools - Returning
+2020-03-06 23:21:38,110 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling LoadSingleLayout
+2020-03-06 23:21:38,111 [1] INFO VerifyIntegrations.Utils.Tools - Checking LayoutFolder existance
+2020-03-06 23:21:38,111 [1] INFO VerifyIntegrations.Utils.Tools - Returning
+2020-03-06 23:21:38,112 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling DataValidationSubMenu
+2020-03-06 23:21:39,265 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling FullVerify
+2020-03-06 23:21:39,270 [1] INFO VerifyIntegrations.Validations.DataValidation - Verifying fields out of layout
+2020-03-06 23:21:39,270 [1] INFO VerifyIntegrations.Validations.DataValidation - Verifying Required Fields
+2020-03-06 23:21:39,270 [1] INFO VerifyIntegrations.Validations.DataValidation - Verifying Primary Keys
+2020-03-06 23:21:39,271 [1] INFO VerifyIntegrations.Validations.DataValidation - Verifying file content
+2020-03-06 23:21:39,272 [1] INFO VerifyIntegrations.Validations.DataValidation - Returning
+2020-03-06 23:21:39,272 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling GenerateErrorLog
+2020-03-06 23:21:39,281 [4] INFO VerifyIntegrations.Utils.Tools - Checking LogFolder existance
+2020-03-06 23:21:39,281 [4] INFO VerifyIntegrations.Utils.Tools - Writting Error log
+2020-03-06 23:21:39,282 [4] INFO VerifyIntegrations.Utils.Tools - Returning
+2020-03-06 23:21:47,771 [1] INFO VerifyIntegrations.Validations.DataValidation - Returning
+2020-03-06 23:21:49,751 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling ManualValidateFile
+2020-03-06 23:21:49,752 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling ListFiles
+2020-03-06 23:21:49,752 [1] INFO VerifyIntegrations.Utils.Tools - Checking path existance D:\Projects\file_layout_verification\VerifyIntegrations\VerifyIntegrations\Layout Files
+2020-03-06 23:21:49,752 [1] INFO VerifyIntegrations.Utils.Tools - Retrieving files from D:\Projects\file_layout_verification\VerifyIntegrations\VerifyIntegrations\Layout Files
+2020-03-06 23:21:49,816 [1] INFO VerifyIntegrations.Utils.Tools - Returning
+2020-03-06 23:21:51,336 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling LoadSingleLayout
+2020-03-06 23:21:51,336 [1] INFO VerifyIntegrations.Utils.Tools - Checking LayoutFolder existance
+2020-03-06 23:21:51,337 [1] INFO VerifyIntegrations.Utils.Tools - Returning
+2020-03-06 23:21:51,337 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling ListFiles
+2020-03-06 23:21:51,337 [1] INFO VerifyIntegrations.Utils.Tools - Checking path existance D:\Projects\file_layout_verification\VerifyIntegrations\VerifyIntegrations\Incoming Files
+2020-03-06 23:21:51,338 [1] INFO VerifyIntegrations.Utils.Tools - Retrieving files from D:\Projects\file_layout_verification\VerifyIntegrations\VerifyIntegrations\Incoming Files
+2020-03-06 23:21:51,402 [1] INFO VerifyIntegrations.Utils.Tools - Returning
+2020-03-06 23:21:52,615 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling DataValidationSubMenu
+2020-03-06 23:21:53,900 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling VerifyRequired
+2020-03-06 23:21:53,900 [1] INFO VerifyIntegrations.Validations.DataValidation - Verifying Required Fields
+2020-03-06 23:21:53,900 [1] INFO VerifyIntegrations.Validations.DataValidation - Verifying file content
+2020-03-06 23:21:53,900 [1] INFO VerifyIntegrations.Validations.DataValidation - Returning
+2020-03-06 23:21:55,058 [1] INFO VerifyIntegrations.Validations.DataValidation - Returning
+2020-03-06 23:21:55,058 [1] INFO VerifyIntegrations.Validations.DataValidation - Returning
+2020-03-06 23:21:56,257 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling ManualValidateFile
+2020-03-06 23:21:56,257 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling ListFiles
+2020-03-06 23:21:56,257 [1] INFO VerifyIntegrations.Utils.Tools - Checking path existance D:\Projects\file_layout_verification\VerifyIntegrations\VerifyIntegrations\Layout Files
+2020-03-06 23:21:56,258 [1] INFO VerifyIntegrations.Utils.Tools - Retrieving files from D:\Projects\file_layout_verification\VerifyIntegrations\VerifyIntegrations\Layout Files
+2020-03-06 23:21:56,318 [1] INFO VerifyIntegrations.Utils.Tools - Returning
+2020-03-06 23:21:57,324 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling LoadSingleLayout
+2020-03-06 23:21:57,324 [1] INFO VerifyIntegrations.Utils.Tools - Checking LayoutFolder existance
+2020-03-06 23:21:57,326 [1] INFO VerifyIntegrations.Utils.Tools - Returning
+2020-03-06 23:21:57,327 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling ListFiles
+2020-03-06 23:21:57,330 [1] INFO VerifyIntegrations.Utils.Tools - Checking path existance D:\Projects\file_layout_verification\VerifyIntegrations\VerifyIntegrations\Incoming Files
+2020-03-06 23:21:57,330 [1] INFO VerifyIntegrations.Utils.Tools - Retrieving files from D:\Projects\file_layout_verification\VerifyIntegrations\VerifyIntegrations\Incoming Files
+2020-03-06 23:21:57,393 [1] INFO VerifyIntegrations.Utils.Tools - Returning
+2020-03-06 23:21:58,270 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling DataValidationSubMenu
+2020-03-06 23:21:59,180 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling FullVerify
+2020-03-06 23:21:59,180 [1] INFO VerifyIntegrations.Validations.DataValidation - Verifying fields out of layout
+2020-03-06 23:21:59,180 [1] INFO VerifyIntegrations.Validations.DataValidation - Verifying Required Fields
+2020-03-06 23:21:59,181 [1] INFO VerifyIntegrations.Validations.DataValidation - Verifying Primary Keys
+2020-03-06 23:21:59,181 [1] INFO VerifyIntegrations.Validations.DataValidation - Verifying file content
+2020-03-06 23:21:59,181 [1] INFO VerifyIntegrations.Validations.DataValidation - Returning
+2020-03-06 23:21:59,181 [1] INFO VerifyIntegrations.Validations.DataValidation - Calling GenerateErrorLog
+2020-03-06 23:21:59,185 [4] INFO VerifyIntegrations.Utils.Tools - Checking LogFolder existance
+2020-03-06 23:21:59,185 [4] INFO VerifyIntegrations.Utils.Tools - Writting Error log
+2020-03-06 23:21:59,186 [4] INFO VerifyIntegrations.Utils.Tools - Returning

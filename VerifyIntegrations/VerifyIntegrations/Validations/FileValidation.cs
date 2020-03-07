@@ -15,7 +15,7 @@ namespace VerifyIntegrations.Validations
 		private static readonly ILog log = LogManager.GetLogger(typeof(FileValidation));
 		public void FileValidationMenu()
 		{
-			log.Info("File Validation execution start");
+			log.Info("Execution Start");
 
 			string op = "";
 
@@ -36,12 +36,14 @@ namespace VerifyIntegrations.Validations
 
 				if (op.Equals("1"))
 				{
+					log.Info("Calling ListFiles");
 					Tools.ListFiles(ConfigurationManager.AppSettings["InputFolder"].ToString());
 					Tools.Pause();
 					Console.Clear();
 				}
 				else if (op.Equals("2"))
 				{
+					log.Info("Calling VerifyAllFiles");
 					VerifyAllFiles();
 				}
 				else if (op.Equals("3"))
@@ -55,11 +57,16 @@ namespace VerifyIntegrations.Validations
 					Console.Clear();
 				}
 			}
+
+			log.Info("Execution Ending");
 		}
 
 		private void VerifyAllFiles()
 		{
+
 			Console.Clear();
+
+			log.Info("Calling LoadLayouts");
 			Dictionary<string, Root> Layouts = Tools.LoadLayouts();
 
 			if (Layouts.Count == 0)
@@ -70,12 +77,13 @@ namespace VerifyIntegrations.Validations
 
 			List<string> InvalidFiles = new List<string>();
 
+			log.Info("Checking InputFolder existance");
 			if (Directory.Exists(ConfigurationManager.AppSettings["InputFolder"].ToString()))
 			{
 				string[] files = Directory.GetFiles(ConfigurationManager.AppSettings["InputFolder"].ToString());
 				string op = "";
 
-				
+				log.Info("Performing validations");
 				Console.WriteLine(" Verificando Arquivos no diretório:\n");
 
 				if (files.Length > 0)
@@ -156,6 +164,7 @@ namespace VerifyIntegrations.Validations
 				}
 				else
 				{
+					log.Error("InputFolder is empty");
 					Console.WriteLine(" O diretório está vazio...");
 				}
 				
@@ -169,6 +178,7 @@ namespace VerifyIntegrations.Validations
 					{
 						foreach(var invalid in InvalidFiles)
 						{
+							log.Info("Calling MoveToInvalid");
 							Tools.MoveToInvalid(invalid);
 						}
 					}
@@ -183,10 +193,12 @@ namespace VerifyIntegrations.Validations
 			}
 			else
 			{
+				log.Error("InputFolder could not be found");
 				Console.WriteLine(" O diretório {0} não foi encontrado...", ConfigurationManager.AppSettings["InputFolder"].ToString());
 			}
 
 			Console.Clear();
+			log.Info("Returning");
 		}
 	}
 }

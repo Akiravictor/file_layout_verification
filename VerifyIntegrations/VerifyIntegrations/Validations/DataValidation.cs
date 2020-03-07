@@ -39,16 +39,19 @@ namespace VerifyIntegrations.Validations
 
 				if (op.Equals("1"))
 				{
+					log.Info("Calling ListFiles");
 					Tools.ListFiles(ConfigurationManager.AppSettings["InputFolder"].ToString());
 					Tools.Pause();
 					Console.Clear();
 				}
 				else if (op.Equals("2"))
 				{
+					log.Info("Calling ValidateFile");
 					ValidateFile();
 				}
 				else if (op.Equals("3"))
 				{
+					log.Info("Calling ManualValidateFile");
 					ManualValidateFile();
 				}
 				else if (op.Equals("4"))
@@ -62,6 +65,8 @@ namespace VerifyIntegrations.Validations
 					Console.Clear();
 				}
 			}
+
+			log.Info("Execution Ending");
 		}
 
 		private void ValidateFile()
@@ -74,6 +79,7 @@ namespace VerifyIntegrations.Validations
 
 			do
 			{
+				log.Info("Calling ListFiles");
 				Console.WriteLine(" Seleciona um arquivo");
 				files = Tools.ListFiles(ConfigurationManager.AppSettings["InputFolder"].ToString());
 
@@ -104,7 +110,7 @@ namespace VerifyIntegrations.Validations
 				{
 					string[] file = Path.GetFileNameWithoutExtension(files[int.Parse(op)]).Split('_');
 
-
+					log.Info("Calling LoadSingleLayout");
 					layout = Tools.LoadSingleLayout(file[1], file[3]);
 
 					if (layout == null)
@@ -114,6 +120,7 @@ namespace VerifyIntegrations.Validations
 					}
 					else
 					{
+						log.Info("Calling DataValidationSubMenu");
 						DataValidationSubMenu(layout, files[int.Parse(op)]);
 					}
 
@@ -131,6 +138,7 @@ namespace VerifyIntegrations.Validations
 
 			do
 			{
+				log.Info("Calling ListFiles");
 				Console.WriteLine(" Seleciona um Layout");
 				files = Tools.ListFiles(ConfigurationManager.AppSettings["LayoutFolder"].ToString());
 
@@ -161,6 +169,7 @@ namespace VerifyIntegrations.Validations
 				{
 					string[] file = Path.GetFileNameWithoutExtension(files[int.Parse(op)]).Split('_');
 
+					log.Info("Calling LoadSingleLayout");
 					layout = Tools.LoadSingleLayout(file[0], file[1]);
 
 					if (layout == null)
@@ -172,6 +181,7 @@ namespace VerifyIntegrations.Validations
 					{
 						do
 						{
+							log.Info("Calling ListFiles");
 							Console.WriteLine(" Seleciona um Layout");
 							files = Tools.ListFiles(ConfigurationManager.AppSettings["InputFolder"].ToString());
 
@@ -200,6 +210,7 @@ namespace VerifyIntegrations.Validations
 							}
 							else
 							{
+								log.Info("Calling DataValidationSubMenu");
 								DataValidationSubMenu(layout, files[int.Parse(op)]);
 							}
 						}
@@ -208,6 +219,8 @@ namespace VerifyIntegrations.Validations
 				}
 			}
 			while (int.Parse(op) < files.Keys.First() || int.Parse(op) > files.Keys.Last());
+
+			log.Info("Returning");
 		}
 
 		private void DataValidationSubMenu(Root layout, string file)
@@ -237,6 +250,7 @@ namespace VerifyIntegrations.Validations
 
 			if (op.Equals("1"))
 			{
+				log.Info("Calling VerifyRequired");
 				int errors = VerifyRequired(layout, file, out var LineErrors);
 
 				Console.WriteLine(" Erros encontrados: {0}", errors);
@@ -251,6 +265,7 @@ namespace VerifyIntegrations.Validations
 			}
 			else
 			{
+				log.Info("Calling FullVerify");
 				int errors = FullVerify(layout, file, out Dictionary<int, string> LineErrors, out Dictionary<int, string> LineWarnings);
 
 				Console.WriteLine(" Erros encontrados: {0}", errors);
@@ -258,6 +273,7 @@ namespace VerifyIntegrations.Validations
 
 				if (LineErrors.Count > 0 && LineWarnings.Count == 0)
 				{
+					log.Info("Calling GenerateErrorLog");
 					Thread thread = new Thread(
 						new ThreadStart(() =>
 							Tools.GenerateErrorLog(LineErrors.ToDictionary(x => x.Key, x => x.Value), null, Path.GetFileNameWithoutExtension(file))
@@ -267,6 +283,7 @@ namespace VerifyIntegrations.Validations
 				}
 				else if (LineErrors.Count == 0 && LineWarnings.Count > 0)
 				{
+					log.Info("Calling GenerateErrorLog");
 					Thread thread = new Thread(
 						new ThreadStart(() =>
 							Tools.GenerateErrorLog(null, LineWarnings.ToDictionary(x => x.Key, x => x.Value), Path.GetFileNameWithoutExtension(file))
@@ -276,6 +293,7 @@ namespace VerifyIntegrations.Validations
 				}
 				else if (LineErrors.Count > 0 && LineWarnings.Count > 0)
 				{
+					log.Info("Calling GenerateErrorLog");
 					Thread thread = new Thread(
 						new ThreadStart(() =>
 							Tools.GenerateErrorLog(LineErrors.ToDictionary(x => x.Key, x => x.Value), LineWarnings.ToDictionary(x => x.Key, x => x.Value), Path.GetFileNameWithoutExtension(file))
@@ -352,6 +370,7 @@ namespace VerifyIntegrations.Validations
 
 					if (op.Equals("1"))
 					{
+						log.Info("Calling MoveToValid");
 						Tools.MoveToValid(file);
 					}
 				}
@@ -363,12 +382,14 @@ namespace VerifyIntegrations.Validations
 
 					if (op.Equals("1"))
 					{
+						log.Info("Calling MoveToInvalid");
 						Tools.MoveToInvalid(file);
 					}
 				}
 			}
 
 			Console.Clear();
+			log.Info("Returning");
 
 		}
 
@@ -396,6 +417,7 @@ namespace VerifyIntegrations.Validations
 					}
 				}
 
+				log.Info("Verifying Required Fields");
 				if (RequiredFieldsIndex.Keys.Count < RequiredFields.Count)
 				{
 					foreach (var item in RequiredFields.Where(r => !RequiredFieldsIndex.ContainsValue(r)).ToList())
@@ -407,6 +429,8 @@ namespace VerifyIntegrations.Validations
 				}
 				else
 				{
+					log.Info("Verifying file content");
+
 					while ((line = sr.ReadLine()) != null)
 					{
 						foreach (int idx in RequiredFieldsIndex.Keys)
@@ -424,6 +448,7 @@ namespace VerifyIntegrations.Validations
 				sr.Close();
 			}
 
+			log.Info("Returning");
 			return LineError.Count;
 		}
 
@@ -468,6 +493,7 @@ namespace VerifyIntegrations.Validations
 
 				List<string> list;
 
+				log.Info("Verifying fields out of layout");
 				if ( (list = header.Split('\t').ToList().Where(h => !AllFields.Select(af => af.Name).Contains(h)).ToList()).Count > 0 )
 				{
 					foreach(var item in list)
@@ -483,6 +509,7 @@ namespace VerifyIntegrations.Validations
 					}
 				}
 
+				log.Info("Verifying Required Fields");
 				if (RequiredFields.Count > RequiredFieldsIndex.Keys.Count)
 				{
 					list = RequiredFields.Where(r => !RequiredFieldsIndex.ContainsValue(r)).ToList();
@@ -502,6 +529,7 @@ namespace VerifyIntegrations.Validations
 					return list.Count;
 				}
 
+				log.Info("Verifying Primary Keys");
 				if (PrimaryKeys.Count > PrimaryKeysIndex.Keys.Count)
 				{
 					list = PrimaryKeys.Where(p => !PrimaryKeysIndex.ContainsValue(p)).ToList();
@@ -522,6 +550,8 @@ namespace VerifyIntegrations.Validations
 				}
 				else
 				{
+					log.Info("Verifying file content");
+
 					while ((line = sr.ReadLine()) != null)
 					{
 						foreach (int idx in AvailableColumns.Keys)
@@ -681,6 +711,7 @@ namespace VerifyIntegrations.Validations
 				}
 			}
 
+			log.Info("Returning");
 			return LineError.Count;
 		}
 	}

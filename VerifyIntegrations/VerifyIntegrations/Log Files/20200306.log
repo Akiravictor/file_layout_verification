@@ -1,3 +1,0 @@
-2020-03-06 19:09:11,194 [1] INFO VerifyIntegrations.Program - Execution Start
-2020-03-06 19:11:01,150 [1] INFO VerifyIntegrations.Validations.FileValidation - File Validation execution start
-2020-03-06 19:11:02,657 [1] INFO VerifyIntegrations.Validations.DataValidation - Data Validation execution start
